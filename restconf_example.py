@@ -31,7 +31,7 @@ def get_interfaces(host: dict) -> str:
         url=f'https://{host["connection_address"]}/restconf/data/Cisco-IOS-XE-native:native/interface/',
         username=host['username'],
         password=host['password'])
-    return response.text
+    return response
 
 
 def print_interfaces(host: dict) -> None:
