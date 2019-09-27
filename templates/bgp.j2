@@ -1,0 +1,27 @@
+
+<bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp"  xmlns:ios-bgp="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp"  xmlns:ios="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+  <id>4</id>
+  <bgp>
+  <default>
+    <ipv4-unicast>false</ipv4-unicast>
+  </default>
+</bgp>
+<neighbor>
+  <id>20.20.20.20</id>
+  <remote-as>20</remote-as>
+  <ebgp-multihop>
+    <max-hop>2</max-hop>
+  </ebgp-multihop>
+  <update-source>
+    <Loopback>2</Loopback>
+  </update-source>
+</neighbor>
+<network>
+  <number>10.3.255.0</number>
+  <mask>255.255.255.0</mask>
+</network>
+<network>
+  <number>192.168.4.0</number>
+</network>
+</bgp>
+
