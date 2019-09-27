@@ -8,13 +8,13 @@ import restconf_helpers
 
 requests.packages.urllib3.disable_warnings()
 
-logger = logging.getLogger('restconf.example')
+logger = logging.getLogger('restconf.provision')
 
 
 def load_devices() -> List[dict]:
-    with open('device_infos.yaml', 'r') as host_file:
-        hosts = yaml.load(host_file.read(), Loader=yaml.FullLoader)
-        return hosts
+    with open('configuration.yaml', 'r') as config_file:
+        devices = yaml.load(config_file.read(), Loader=yaml.FullLoader)['devices']
+        return devices
 
 
 def init_logger():
@@ -26,23 +26,25 @@ def init_logger():
     _logger.addHandler(ch)
 
 
-def get_interfaces(host: dict) -> str:
-    response = restconf_helpers.RestconfRequestHelper().get(
-        url=f'https://{host["connection_address"]}/restconf/data/Cisco-IOS-XE-native:native/interface/',
-        username=host['username'],
-        password=host['password'])
-    return response
+#def get_interfaces(host: dict) -> str:
+#    response = restconf_helpers.RestconfRequestHelper().get(
+#        url=f'https://{host["connection_address"]}/restconf/data/Cisco-IOS-XE-native:native/interface/',
+#        username=host['username'],
+#        password=host['password'])
+#    return response
 
 
-def print_interfaces(host: dict) -> None:
-    print(get_interfaces(host=host))
+#def print_interfaces(host: dict) -> None:
+#    print(get_interfaces(host=host))
 
 
 def main():
+    logger.info(f"Loading device configurations...")
     devices = load_devices()
     for device in devices:
-        logger.info(f'Getting information for device {device}')
-        print_interfaces(host=device)
+        logger.info(f"Found configuration for device {device['devicename']} on address {device['ip_address']}")
+    input("Proceed with provisioning these devices?")
+#        print_interfaces(host=device)
 
 
 if __name__ == '__main__':
