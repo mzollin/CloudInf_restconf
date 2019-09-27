@@ -29,5 +29,10 @@
   
   - bgp:
     as: 4
-    neighbor address: 10.0.1.0
+    neighbor address: 20.20.20.20
     neighbor as: 20
+    update source: loopback 2
+    ebgp-multihop: true   
+    multihop count: 2
+    network: 192.168.4.0
+    mask: 255.255.255.0
