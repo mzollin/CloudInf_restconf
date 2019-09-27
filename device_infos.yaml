@@ -2,37 +2,37 @@
   password: cisco
   connection_address: 10.3.255.104
   
-- interfaces:
-  - name: 1
-    ip address: 10.3.255.104
-    mask: 255.255.255.0
-    no switchport: true
-    loopback: false
-  - name: 1
-    ip address: 192.168.4.1
-    mask: 255.255.255.0
-    no switchport: false
-    loopback: true
-  - name: 2
-    ip address: 4.4.4.4
-    mask: 255.255.255.255
-    no switchport: false
-    loopback: true
-  
-  - ospf:
-    process: 0
-    - area 0:
-      - network address: 10.3.255.1
-        mask: 0.0.0.255
-      - network address: 4.4.4.4
-        mask: 0.0.0.0
-  
-  - bgp:
-    as: 4
-    neighbor address: 20.20.20.20
-    neighbor as: 20
-    update source: loopback 2
-    ebgp-multihop: true   
-    multihop count: 2
-    network: 192.168.4.0
-    mask: 255.255.255.0
+#- interfaces:
+#  - name: 1
+#    ip address: 10.3.255.104
+#    mask: 255.255.255.0
+#    no switchport: true
+#    loopback: false
+#  - name: 1
+#    ip address: 192.168.4.1
+#    mask: 255.255.255.0
+#    no switchport: false
+#    loopback: true
+#  - name: 2
+#    ip address: 4.4.4.4
+#    mask: 255.255.255.255
+#    no switchport: false
+#    loopback: true
+#  
+#- ospf:
+#  - process: 0
+#  - area 0:
+#    - network address: 10.3.255.1
+#      mask: 0.0.0.255
+#    - network address: 4.4.4.4
+#      mask: 0.0.0.0
+#  
+#- bgp:
+#  as: 4
+#  neighbor address: 20.20.20.20
+#  neighbor as: 20
+#  update source: loopback 2
+#  ebgp-multihop: true   
+#  multihop count: 2
+#  network: 192.168.4.0
+#  mask: 255.255.255.0

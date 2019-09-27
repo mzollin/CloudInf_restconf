@@ -28,7 +28,7 @@ def init_logger():
 
 def get_interfaces(host: dict) -> str:
     response = restconf_helpers.RestconfRequestHelper().get(
-        url=f'https://{host["connection_address"]}/restconf/data/Cisco-IOS-XE-native:native/interface/',
+        url=f'https://{host["connection_address"]}/restconf/data/Cisco-IOS-XE-native:native/ip/',
         username=host['username'],
         password=host['password'])
     return response
