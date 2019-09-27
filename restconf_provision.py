@@ -3,6 +3,7 @@ from typing import List
 
 import requests
 import yaml
+from jinja2 import Environment, FileSystemLoader
 
 import restconf_helpers
 
@@ -26,25 +27,29 @@ def init_logger():
     _logger.addHandler(ch)
 
 
-#def get_interfaces(host: dict) -> str:
-#    response = restconf_helpers.RestconfRequestHelper().get(
-#        url=f'https://{host["connection_address"]}/restconf/data/Cisco-IOS-XE-native:native/interface/',
-#        username=host['username'],
-#        password=host['password'])
-#    return response
-
-
-#def print_interfaces(host: dict) -> None:
-#    print(get_interfaces(host=host))
-
-
 def main():
     logger.info(f"Loading device configurations...")
     devices = load_devices()
     for device in devices:
         logger.info(f"Found configuration for device {device['devicename']} on address {device['ip_address']}")
     input("Proceed with provisioning these devices?")
-#        print_interfaces(host=device)
+
+    # THIS IS A TEST ONLY FOR BGP XML
+    endpoint_url = f"https://{device['ip_address']}/restconf/data/Cisco-IOS-XE-native:native/router/bgp=4"
+    env = Environment(loader=FileSystemLoader('./'), trim_blocks=True, lstrip_blocks=True)
+    template = env.get_template('templates/bgp.j2')
+#    print(endpoint_url)
+#    print(template.render())
+    response = requests.put(url=endpoint_url,
+                       data=template.render(),
+                       auth=(device['username'], device['password']),
+                       verify=False
+                       )
+    if response:
+        print("Provisioning successful")
+    else:
+        print("Provisioning failed")
+        print(put.status_code)
 
 
 if __name__ == '__main__':

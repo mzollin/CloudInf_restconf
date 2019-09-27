@@ -6,10 +6,4 @@ devices:
     ip_address: "10.3.255.104"
     password: cisco
     username: python
-  - 
-    configuration: test
-    devicename: RT-4
-    ip_address: "10.3.255.104"
-    password: cisco
-    username: python
 
