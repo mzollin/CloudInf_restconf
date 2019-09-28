@@ -1,21 +1,37 @@
-devices: 
+devices:
   - devicename: RT-4
     ip_address: "10.3.255.104"
     username: python
     password: cisco
     configuration:
-      - section: interface
-        endpoint_url: native/interface
-      - section: ip
-        endpoint_url: native/ip
+#      - section: interface
+#        leaf_url: interface
+
+#      - section: ip
+#        leaf_url: ip
+
       - section: bgp
-        endpoint_url: native/router/bgp=4    # required to specify own BGP ASN
-        as_number: 4
-        neighbors: 
-          - as_number: 20
-            ip_address: "20.20.20.20"
-          - as_number: 5
-            ip_address: "5.5.5.5"
-      - section: ospf
-        endpoint_url: native/router/ospf=1    # required to specify own OSPF PID
-        process: 1
+        leaf_url: router/bgp=4    # required to specify own BGP ASN
+        id: 4
+        neighbors:
+          - id: "20.20.20.20"
+            remote_as: 20
+            ebgp_multihop:
+              max_hop: 2
+            update_source:
+              loopback: 2
+        networks:
+          - number: "192.168.4.0"
+            mask: "255.255.255.0"
+
+#      - section: ospf
+#        leaf_url: router/ospf=1    # required to specify own OSPF PID
+#        process: 1
+ 
+
+# - devicename: RT-X 
+#   ip_address: "10.3.255.10X"
+#   username: python
+#   password: cisco
+#   configuration: ...
+

@@ -28,7 +28,7 @@ def init_logger():
 
 
 def main():
-    logger.info(f"Loading device configurations...")
+    logger.info("Loading device configurations...")
     devices = load_config()
     for device in devices:
         logger.info(f"Found configuration for device {device['devicename']} on address {device['ip_address']}")
@@ -37,18 +37,18 @@ def main():
 
     for device in devices:
         for section in device['configuration']:
-            print(section['section'])
-            device_url = f"https://{device['ip_address']}/restconf/data/Cisco-IOS-XE-native:{section['endpoint_url']}"
+            device_url = f"https://{device['ip_address']}/restconf/data/native/{section['leaf_url']}"
             env = Environment(loader=FileSystemLoader('./'), trim_blocks=True, lstrip_blocks=True)
             template = env.get_template(f"templates/{section['section']}.j2")
             response = requests.put(url=device_url,
-                                    data=template.render(),
+                                    data=template.render(section),
                                     auth=(device['username'], device['password']),
                                     verify=False    # those pesky self-signed certs
                                    )
             if not response:
                 logger.error(f"Provisioning section {section['section']} on device {device['devicename']} "
                              f"failed with HTTP error {response.status_code}")
+    logger.info("Finished provisioning")
 
 
 if __name__ == '__main__':
