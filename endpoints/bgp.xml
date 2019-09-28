@@ -1,9 +1,6 @@
 
 <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp"  xmlns:ios-bgp="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp"  xmlns:ios="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
   <id>4</id>
-  <bgp>
-    <log-neighbor-changes/>
-  </bgp>
   <neighbor>
     <id>20.20.20.20</id>
     <remote-as>20</remote-as>
