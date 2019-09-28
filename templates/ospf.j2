@@ -1,16 +1,12 @@
 
 <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf"  xmlns:ios-ospf="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf"  xmlns:ios="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-  <id>1</id>
-  <router-id>4.4.4.4</router-id>
+  <id>{{ id }}</id>
+  <router-id>{{ router_id }}</router-id>
+  {% for network in networks %}
   <network>
-    <ip>4.4.4.4</ip>
-    <mask>0.0.0.0</mask>
-    <area>0</area>
+    <ip>{{ network.ip }}</ip>
+    <mask>{{ network.mask }}</mask>
+    <area>{{ network.area }}</area>
   </network>
-  <network>
-    <ip>10.3.255.0</ip>
-    <mask>0.0.0.255</mask>
-    <area>0</area>
-  </network>
+  {% endfor %}
 </ospf>
-

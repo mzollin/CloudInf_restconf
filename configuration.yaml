@@ -24,9 +24,17 @@ devices:
           - number: "192.168.4.0"
             mask: "255.255.255.0"
 
-#      - section: ospf
-#        leaf_url: router/ospf=1    # required to specify own OSPF PID
-#        process: 1
+      - section: ospf
+        leaf_url: router/ospf=1    # required to specify own OSPF PID
+        id: 1
+        router_id: "4.4.4.4"
+        networks:
+          - ip: "4.4.4.4"
+            mask: "0.0.0.0"
+            area: 0
+          - ip: "10.3.255.0"
+            mask: "0.0.0.255"
+            area: 0
  
 
 # - devicename: RT-X 
