@@ -12,7 +12,7 @@ requests.packages.urllib3.disable_warnings()
 logger = logging.getLogger('restconf.provision')
 
 
-def load_devices() -> List[dict]:
+def load_config() -> List[dict]:
     with open('configuration.yaml', 'r') as config_file:
         devices = yaml.load(config_file.read(), Loader=yaml.FullLoader)['devices']
         return devices
@@ -48,8 +48,7 @@ def main():
     if response:
         print("Provisioning successful")
     else:
-        print("Provisioning failed")
-        print(put.status_code)
+        print(f"Provisioning failed with HTTP error {response.status_code}")
 
 
 if __name__ == '__main__':
