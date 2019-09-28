@@ -4,8 +4,15 @@ devices:
     username: python
     password: cisco
     configuration:
-#      - section: interface
-#        leaf_url: interface
+      - section: interface
+        leaf_url: interface
+        loopbacks:
+          - name: 1
+            ip: "192.168.4.1"
+            mask: "255.255.255.0"
+          - name: 2
+            ip: "4.4.4.4"
+            mask: "255.255.255.255"
 
 #      - section: ip
 #        leaf_url: ip

@@ -18,27 +18,17 @@
   <auto>true</auto>
 </negotiation>
 </GigabitEthernet>
+{% for loopback in loopbacks %}
 <Loopback>
-  <name>1</name>
+  <name>{{ loopback.name }}</name>
   <ip>
   <address>
   <primary>
-    <address>192.168.4.1</address>
-    <mask>255.255.255.0</mask>
+    <address>{{ loopback.ip }}</address>
+    <mask>{{ loopback.mask }}</mask>
   </primary>
 </address>
 </ip>
 </Loopback>
-<Loopback>
-  <name>2</name>
-  <ip>
-  <address>
-  <primary>
-    <address>4.4.4.4</address>
-    <mask>255.255.255.255</mask>
-  </primary>
-</address>
-</ip>
-</Loopback>
+{% endfor %}
 </interface>
-
