@@ -1,5 +1,12 @@
 
 <ip xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native"  xmlns:ios="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+<domain>
+  <lookup>false</lookup>
+  <name>lab.ins.hsr.ch</name>
+</domain>
+<forward-protocol>
+  <protocol>nd</protocol>
+</forward-protocol>
 {% for route in routes %}
 <route>
   <ip-route-interface-forwarding-list>
@@ -13,5 +20,33 @@
   </ip-route-interface-forwarding-list>
 </route>
 {% endfor %}
+<ssh>
+<client>
+<algorithm>
+<encryption>
+  <aes128-ctr/>
+  <aes192-ctr/>
+  <aes256-ctr/>
+</encryption>
+</algorithm>
+</client>
+<server>
+<algorithm>
+<encryption>
+  <aes128-ctr/>
+  <aes192-ctr/>
+  <aes256-ctr/>
+</encryption>
+</algorithm>
+</server>
+<time-out>60</time-out>
+<version>2</version>
+</ssh>
+<http xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-http">
+<authentication>
+  <local/>
+</authentication>
+<server>false</server>
+<secure-server>true</secure-server>
+</http>
 </ip>
-
