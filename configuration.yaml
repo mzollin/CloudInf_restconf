@@ -3,12 +3,19 @@ devices:
     ip_address: "10.3.255.104"
     username: python
     password: cisco
-    configuration: 
+    configuration:
+      - section: interface
+        endpoint_url: native/interface
+      - section: ip
+        endpoint_url: native/ip
       - section: bgp
-        endpoint_url: native/router/bgp=4
+        endpoint_url: native/router/bgp=4    # required to specify own BGP ASN
         as_number: 4
         neighbors: 
           - as_number: 20
             ip_address: "20.20.20.20"
           - as_number: 5
             ip_address: "5.5.5.5"
+      - section: ospf
+        endpoint_url: native/router/ospf=1    # required to specify own OSPF PID
+        process: 1

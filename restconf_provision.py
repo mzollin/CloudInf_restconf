@@ -44,12 +44,11 @@ def main():
             response = requests.put(url=device_url,
                                     data=template.render(),
                                     auth=(device['username'], device['password']),
-                                    verify=False
+                                    verify=False    # those pesky self-signed certs
                                    )
-            if response:
-                print("Provisioning successful")
-            else:
-                print(f"Provisioning failed with HTTP error {response.status_code}")
+            if not response:
+                logger.error(f"Provisioning section {section['section']} on device {device['devicename']} "
+                             f"failed with HTTP error {response.status_code}")
 
 
 if __name__ == '__main__':
