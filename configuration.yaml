@@ -1,9 +1,14 @@
---- 
 devices: 
-  - 
-    configuration: test
-    devicename: RT-4
+  - devicename: RT-4
     ip_address: "10.3.255.104"
-    password: cisco
     username: python
-
+    password: cisco
+    configuration: 
+      - section: bgp
+        endpoint_url: native/router/bgp=4
+        as_number: 4
+        neighbors: 
+          - as_number: 20
+            ip_address: "20.20.20.20"
+          - as_number: 5
+            ip_address: "5.5.5.5"
