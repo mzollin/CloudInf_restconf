@@ -14,8 +14,14 @@ devices:
             ip: "4.4.4.4"
             mask: "255.255.255.255"
 
-#      - section: ip
-#        leaf_url: ip
+      - section: ip
+        leaf_url: ip
+        routes:
+          # ip-route-interface-forwarding-list
+          - prefix: "0.0.0.0"
+            mask: "0.0.0.0"
+            forward_list:
+              - fwd: "10.3.255.1"
 
       - section: bgp
         leaf_url: router/bgp=4    # required to specify own BGP ASN
