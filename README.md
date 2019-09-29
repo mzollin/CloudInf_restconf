@@ -20,10 +20,10 @@ To build a template you could look for the exact YANG data model you need and cr
 Oh great. But the format is not too hard, as all RESTCONF URIs follow the same format. Again from Cisco Learning Labs:
 ```https://<ADDRESS>/<ROOT>/data/<[YANG MODULE:]CONTAINER>/<LEAF>[?<OPTIONS>]```
 
-Example: To get the current BGP configuration you can use curl to make a GET request to the corresponding RESTCONF URI:
+Example: To get the current BGP configuration you can use curl to make a GET request to the corresponding URI:
 ```curl --user python --insecure https://10.3.255.104/restconf/data/native/router/bgp/```
 
-Once you got the XMLs you can replace the values that you want as variables with Jinja2 placeholders and add the name and value specific to the device to the corresponding section of the configuration file.
+Once you got all the necessary XMLs you can replace the values that you want as variables with Jinja2 placeholders, add the name and value specific to the device to the corresponding section of the configuration file and place them in the template folder.
 
 ### Building the Configuration
 placeholder
