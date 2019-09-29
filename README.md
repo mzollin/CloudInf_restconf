@@ -1,5 +1,6 @@
+# CloudInf RESTCONF Automation
 # Introduction
-Configuring all your network devices one by one over the command line interface can be tedious. Spare your fingers and enable automation by using this model based approach which allows you to automatically provision all your devices using a Python script and configuration files.
+Configuring all your network devices one by one over the command line interface can be tedious. Spare your fingers and enable automation by using this model based approach which allows you to automatically provision all your devices using the RESTCONF protocol with a Python script and configuration files.
 
 ## Setup
 - Install Python > 3.6 and pip
