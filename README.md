@@ -26,7 +26,7 @@ Example: To get the current BGP configuration you can use curl to make a GET req
 Once you got all the necessary XMLs you can replace the values that you want as variables with Jinja2 placeholders, place them in the template folder and add the name and value specific to the device to the corresponding section of the configuration file.
 
 ### Building the Configuration
-The best way to get familiar with the configuration file structure is to read the provided example in [configuration.yaml](../blob/master/configuration.yaml).
+The best way to get familiar with the configuration file structure is to read the provided example in [configuration.yaml](../master/configuration.yaml).
 
 ## Usage
 Prepare the configuration and template files as stated above and start the script:  
