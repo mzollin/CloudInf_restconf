@@ -3,7 +3,7 @@ from typing import List
 
 import requests
 import yaml
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 
 requests.packages.urllib3.disable_warnings()
 
@@ -30,7 +30,11 @@ def send_config(devices: List[dict]):
         for section in device['configuration']:
             device_url = f"https://{device['ip_address']}/restconf/data/native/{section['leaf_url']}"
             env = Environment(loader=FileSystemLoader('./'), trim_blocks=True, lstrip_blocks=True)
-            template = env.get_template(f"templates/{section['section']}.j2")
+            try:
+                template = env.get_template(f"templates/{section['section']}.j2")
+            except TemplateNotFound:
+                logger.error(f"Can't find template '{section['section']}', skipping...")
+                break
             response = requests.put(
                     url=device_url,
                     data=template.render(section),
