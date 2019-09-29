@@ -35,11 +35,10 @@ def send_config(devices: List[dict]):
             except TemplateNotFound:
                 logger.error(f"Can't find template '{section['section']}', skipping...")
                 break
-            response = requests.put(
-                    url=device_url,
-                    data=template.render(section),
-                    auth=(device['username'], device['password']),
-                    verify=False)    # those pesky self-signed certs
+            response = requests.put(url=device_url,
+                                    data=template.render(section),
+                                    auth=(device['username'], device['password']),
+                                    verify=False)    # those pesky self-signed certs
             if not response:
                 logger.error(f"Provisioning section {section['section']} on device {device['devicename']} "
                              f"failed with HTTP error {response.status_code}")
