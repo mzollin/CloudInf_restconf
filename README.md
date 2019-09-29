@@ -17,16 +17,16 @@ You will need to provide these resources by building XML templates for the capab
 To build a template you could look for the exact YANG data model you need and create an XML template from it. The easier way is to configure one of the devices by hand over the CLI and read the XML back by reading the appropriate RESTCONF URI. Sadly, to quote Cisco Learning Labs:
 >One aspect true of all REST APIs is the importance of the URI in identifying the data being requested or configured, and RESTCONF is no exception. A unique aspect of RESTCONF is that it lacks any true "API Documentation" that a developer would use to learn how to use it. Rather, the YANG Models themselves ARE the API documentation.
 
-Oh great. But the format is not too hard, as all RESTCONF URIs follow the same format. Again from Cisco Learning Labs:
+Oh great. But the format is not too hard, as all RESTCONF URIs follow the same format. Again from Cisco Learning Labs:  
 ```https://<ADDRESS>/<ROOT>/data/<[YANG MODULE:]CONTAINER>/<LEAF>[?<OPTIONS>]```
 
-Example: To get the current BGP configuration you can use curl to make a GET request to the corresponding URI:
+Example: To get the current BGP configuration you can use curl to make a GET request to the corresponding URI:  
 ```curl --user python --insecure https://10.3.255.104/restconf/data/native/router/bgp/```
 
-Once you got all the necessary XMLs you can replace the values that you want as variables with Jinja2 placeholders, add the name and value specific to the device to the corresponding section of the configuration file and place them in the template folder.
+Once you got all the necessary XMLs you can replace the values that you want as variables with Jinja2 placeholders, place them in the template folder and add the name and value specific to the device to the corresponding section of the configuration file.
 
 ### Building the Configuration
-placeholder
+The best way to get familiar with the configuration file structure is to read the provided example in [configuration.yaml](../blob/master/configuration.yaml).
 
 ## Usage
 Prepare the configuration and template files as stated above and start the script:  
