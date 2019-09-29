@@ -1,15 +1,10 @@
-# CloudInf Restconf Lab
-This Python script can be extended during the CloudInf Restconf Lab. 
-It shows you how to do a basic Restconf request.
-The task is specified in a separate document.
+# Introduction
+Configuring all your network devices one by one over the command line interface can be tedious. Spare your fingers and enable automation by using this model based approach which allows you to automatically provision all your devices using a Python script and configuration files.
 
-## Prerequirements & installation
-- Python > 3.6
-- pip
-- any text editor or IDE
-- we recommend to use virtual environments [Documentation](https://docs.python.org/3/library/venv.html)
+## Setup
+- Install Python > 3.6 and pip
 - Install the required libraries by running the command `pip install -r requirements.txt`
 
 ## Usage
 Start the program:
-`python restconf_example.py`
+`python restconf_provision.py`
